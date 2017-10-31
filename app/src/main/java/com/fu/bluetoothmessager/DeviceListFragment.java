@@ -221,7 +221,7 @@ public class DeviceListFragment extends Fragment {
 
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 15);
+            String address = info.substring(info.length() - 17);
 
             connectDevice(address, false);
         }
