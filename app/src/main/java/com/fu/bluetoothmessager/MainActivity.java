@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     // Intent request codes
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
+    private static final int REQUEST_ENABLE_POSITION = 1;
     private static final int REQUEST_ENABLE_BT = 3;
 
 
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             int accessCoarseLocation = this.checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION);
             int accessFineLocation = this.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION);
 
-            List<String> listRequestPermission = new ArrayList<String>();
+            List<String> listRequestPermission = new ArrayList<>();
 
             if (accessCoarseLocation != PackageManager.PERMISSION_GRANTED) {
                 listRequestPermission.add(android.Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -154,12 +155,8 @@ public class MainActivity extends AppCompatActivity {
 
             if (!listRequestPermission.isEmpty()) {
                 String[] strRequestPermission = listRequestPermission.toArray(new String[listRequestPermission.size()]);
-                requestPermissions(strRequestPermission, Constants.REQUEST_ENABLE_BLUETOOTH);
-            } else {
-                setupTab();
+                requestPermissions(strRequestPermission, REQUEST_ENABLE_POSITION);
             }
-        } else {
-            setupTab();
         }
     }
 
@@ -167,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case Constants.REQUEST_ENABLE_BLUETOOTH:
+            case REQUEST_ENABLE_POSITION:
                 if (grantResults.length > 0) {
                     for (int gr : grantResults) {
                         // Check if request is granted or not
@@ -187,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 // When the request to enable Bluetooth returns
                 if (resultCode == Activity.RESULT_OK) {
                     accessLocationPermission();
+                    setupTab();
                 } else {
                     finish();
                 }

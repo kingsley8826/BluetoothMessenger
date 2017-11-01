@@ -41,14 +41,13 @@ public class RealmContext {
             insert(device);
         } else {
             realm.beginTransaction();
-
             device.addChatData(chatData);
             realm.commitTransaction();
         }
 
     }
 
-    private void insert(Device device) {
+    public void insert(Device device) {
         realm.beginTransaction();
         realm.copyToRealm(device);
         realm.commitTransaction();

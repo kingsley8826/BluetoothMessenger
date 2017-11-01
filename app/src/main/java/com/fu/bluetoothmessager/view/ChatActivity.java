@@ -66,10 +66,11 @@ public class ChatActivity extends BaseActivity {
         Device realmDevice = RealmContext.getInstance().getDevice(bDevice.getAddress());
         if (realmDevice == null) {
             currentDevice = new Device(bDevice.getName(), bDevice.getAddress());
+            RealmContext.getInstance().insert(currentDevice);
+            currentDevice = RealmContext.getInstance().getDevice(bDevice.getAddress());
         } else {
             currentDevice = realmDevice;
         }
-
 
         setupToolbarWithUpNav(R.id.toolbar, currentDevice.getName(), R.drawable.ic_back);
         setupChat();

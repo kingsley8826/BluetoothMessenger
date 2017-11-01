@@ -41,8 +41,6 @@ public class BluetoothChatService {
 
         mConnectedThread = new ConnectedThread(bluetoothSocket);
         mConnectedThread.start();
-
-//        updateUserInterfaceTitle();
     }
 
     /**
@@ -159,7 +157,6 @@ public class BluetoothChatService {
             mConnectedThread.cancel();
             mConnectedThread = null;
         }
-//        updateUserInterfaceTitle();
     }
 
 

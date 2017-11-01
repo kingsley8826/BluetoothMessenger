@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
 import com.fu.bluetoothmessager.R;
 import com.fu.bluetoothmessager.adapter.ContactAdapter;
 import com.fu.bluetoothmessager.model.Device;
@@ -54,7 +55,7 @@ public class OtherDeviceFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_other_device, container, false);
         ButterKnife.bind(this, view);
-        if(!Constants.AUTO_LOAD_DEVICE){
+        if (!Constants.AUTO_LOAD_DEVICE) {
             init();
         }
         return view;
@@ -119,7 +120,9 @@ public class OtherDeviceFragment extends Fragment {
 
                 // If it's already paired, skip it, because it's been listed already
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-                    mOtherDeviceAdapter.addDevice(new Device(device.getName(), device.getAddress()));
+                    String name = device.getName();
+                    if (name == null) name = "Unknown";
+                    mOtherDeviceAdapter.addDevice(new Device(name, device.getAddress()));
                 }
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) { // When discovery is finished, change the Activity title
                 if (pDialog != null && pDialog.isShowing())

@@ -29,7 +29,6 @@ public class Constants {
     public static final int TYPE_YOU = 0;
     public static final int TYPE_ME = 1;
 
-    public static final int REQUEST_ENABLE_BLUETOOTH = 1;
 
     // Message types sent from the BluetoothChatService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;

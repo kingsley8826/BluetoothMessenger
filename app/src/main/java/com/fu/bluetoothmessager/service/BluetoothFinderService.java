@@ -69,7 +69,6 @@ public class BluetoothFinderService {
             mInsecureAcceptThread = new AcceptThread(false);
             mInsecureAcceptThread.start();
         }
-//        updateUserInterfaceTitle();
     }
 
     /**
@@ -319,6 +318,5 @@ public class BluetoothFinderService {
             mInsecureAcceptThread = null;
         }
         Constants.CURRENT_STATE = Constants.STATE_NONE;
-//        updateUserInterfaceTitle();
     }
 }
