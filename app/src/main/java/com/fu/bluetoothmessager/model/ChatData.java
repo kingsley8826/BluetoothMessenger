@@ -1,25 +1,27 @@
-package com.fu.bluetoothmessager.recyclerchat;
+package com.fu.bluetoothmessager.model;
 
 import com.fu.bluetoothmessager.util.Type;
 
-/**
- * Created by Tuan-FPT on 31/10/2017.
- */
+import io.realm.RealmObject;
 
-public class ChatData {
 
-    private Type type;
+public class ChatData extends RealmObject{
+
+    private int type;
     private String text;
     private String time;
     private int image;
 
-    public ChatData(Type type, String time, int image) {
+    public ChatData() {
+    }
+
+    public ChatData(int type, String time, int image) {
         this.type = type;
         this.time = time;
         this.image = image;
     }
 
-    public ChatData(Type type, String text, String time) {
+    public ChatData(int type, String text, String time) {
         this.type = type;
         this.text = text;
         this.time = time;
@@ -41,11 +43,11 @@ public class ChatData {
         this.text = text;
     }
 
-    public Type getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(int type) {
         this.type = type;
     }
 

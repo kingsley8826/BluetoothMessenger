@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.fu.bluetoothmessager.model.Constants;
+import com.fu.bluetoothmessager.util.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;

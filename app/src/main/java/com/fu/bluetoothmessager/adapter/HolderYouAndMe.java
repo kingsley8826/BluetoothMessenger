@@ -1,4 +1,4 @@
-package com.fu.bluetoothmessager.recyclerchat;
+package com.fu.bluetoothmessager.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,11 +11,11 @@ import com.fu.bluetoothmessager.R;
  * Created by Tuan-FPT on 31/10/2017.
  */
 
-public class HolderMe extends RecyclerView.ViewHolder {
+public class HolderYouAndMe extends RecyclerView.ViewHolder {
 
     private TextView time, chatText;
 
-    public HolderMe(View v) {
+    public HolderYouAndMe(View v) {
         super(v);
         time = (TextView) v.findViewById(R.id.tv_time);
         chatText = (TextView) v.findViewById(R.id.tv_chat_text);

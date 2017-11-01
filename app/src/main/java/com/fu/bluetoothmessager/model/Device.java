@@ -1,20 +1,25 @@
 package com.fu.bluetoothmessager.model;
 
 import com.fu.bluetoothmessager.R;
-import com.fu.bluetoothmessager.recyclerchat.ChatData;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-/**
- * Created by Tuan-FPT on 31/10/2017.
- */
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class Device {
+
+public class Device extends RealmObject implements Serializable {
+
+    @PrimaryKey
+    private String address;
 
     private String name;
-    private String address;
     private int image;
-    private ArrayList<ChatData> conversationList;
+    private RealmList<ChatData> conversationList;
+
+    public Device() {
+    }
 
     public Device(String name, String address) {
         this.name = name;
@@ -22,15 +27,15 @@ public class Device {
         this.image = R.drawable.user4;
     }
 
-    public Device(String name, String address,ArrayList<ChatData> conversationList) {
+    public Device(String name, String address, RealmList<ChatData> conversationList) {
         this.name = name;
         this.address = address;
         this.conversationList = conversationList;
     }
 
-    public Device(ArrayList<ChatData> conversationList) {
+    public Device(RealmList<ChatData> conversationList) {
         if (conversationList == null) {
-            this.conversationList = new ArrayList<>();
+            this.conversationList = new RealmList<>();
         } else {
             this.conversationList = conversationList;
         }
@@ -56,20 +61,27 @@ public class Device {
         return image;
     }
 
-    public ArrayList<ChatData> getConversationList() {
+    public RealmList<ChatData> getConversationList() {
         if (conversationList == null) {
-            return new ArrayList<>();
+            return new RealmList<>();
         } else {
             return conversationList;
         }
 
     }
 
-    public void setConversationList(ArrayList<ChatData> conversationList) {
+    public void addChatData(ChatData chatData) {
         if (conversationList == null) {
-            this.conversationList = new ArrayList<>();
+            conversationList = new RealmList<>();
+            conversationList.add(chatData);
         } else {
-            this.conversationList = conversationList;
+            RealmList<ChatData> chatList = new RealmList<>(); // Create new List to fix bug can't insert RealmList
+            for (ChatData chat : conversationList) {
+                chatList.add(chat);
+            }
+            conversationList = chatList;
+            conversationList.add(chatData);
         }
     }
+
 }

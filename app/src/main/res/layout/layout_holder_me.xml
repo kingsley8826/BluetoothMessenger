@@ -30,7 +30,6 @@
             android:text="Hi,I'm Dao Manh Tuan"
             android:textColor="@android:color/white"
             android:textSize="@dimen/h3"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:textAppearance="@style/Light"
             android:background="@drawable/bg_chat_me"/>

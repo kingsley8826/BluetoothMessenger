@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@drawable/bg_item_list"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/tvDeviceAvatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space10"
+        android:layout_marginRight="@dimen/space10"
+        android:src="@drawable/user4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_toEndOf="@+id/tvDeviceAvatar"
+        android:background="@drawable/bg_bottom_grey"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/space10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvDeviceName"
+                style="@style/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red Mi"
+                android:textAppearance="@style/Light" />
+
+            <TextView
+                android:id="@+id/tvLastMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDeviceName"
+                android:layout_marginTop="3dp"
+                android:text="Hi, Nice to meet you!"
+                android:textAppearance="@style/ExtraLight"
+                android:textColor="@color/colorTextInfo"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="17:00"
+                android:textAppearance="@style/ExtraLight"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="@dimen/h4" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

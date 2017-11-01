@@ -1,6 +1,5 @@
-package com.fu.bluetoothmessager.recyclerchat;
+package com.fu.bluetoothmessager.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,32 +7,24 @@ import android.view.ViewGroup;
 
 
 import com.fu.bluetoothmessager.R;
+import com.fu.bluetoothmessager.database.RealmContext;
+import com.fu.bluetoothmessager.model.ChatData;
 import com.fu.bluetoothmessager.model.Device;
-import com.fu.bluetoothmessager.util.Type;
+import com.fu.bluetoothmessager.util.Constants;
 
-import java.util.ArrayList;
-import java.util.List;
+import io.realm.RealmList;
 
-/**
- * Created by Tuan-FPT on 31/10/2017.
- */
 
 public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
-    private ArrayList<ChatData> items;
-    private Context mContext;
+    private RealmList<ChatData> items;
+    private Device device;
 
-    private final int YOU = 1;
-    private final int ME = 2;
-
-    public ConversationAdapter(Context context, Device device) {
-        this.mContext = context;
+    public ConversationAdapter(Device device) {
+        this.device = device;
         this.items = device.getConversationList();
     }
-
-
-
 
     @Override
     public int getItemCount() {
@@ -42,13 +33,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        //More to come
-        if (items.get(position).getType() == Type.YOU) {
-            return YOU;
-        } else if (items.get(position).getType() == Type.ME) {
-            return ME;
-        }
-        return -1;
+        return items.get(position).getType();
     }
 
     @Override
@@ -57,48 +42,44 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
         switch (viewType) {
-            case YOU:
+            case Constants.TYPE_YOU:
                 View v2 = inflater.inflate(R.layout.layout_holder_you, viewGroup, false);
-                viewHolder = new HolderYou(v2);
+                viewHolder = new HolderYouAndMe(v2);
                 break;
             default:
                 View v = inflater.inflate(R.layout.layout_holder_me, viewGroup, false);
-                viewHolder = new HolderMe(v);
+                viewHolder = new HolderYouAndMe(v);
                 break;
         }
         return viewHolder;
     }
 
     public void addItem(ChatData chatData) {
-        items.add(chatData);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(List<ChatData> item) {
-        items.addAll(item);
+        RealmContext.getInstance().insertChatData(device, chatData);
+        items = device.getConversationList();
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
-            case YOU:
-                HolderYou vh2 = (HolderYou) viewHolder;
-                configureViewHolder2(vh2, position);
+            case Constants.TYPE_YOU:
+                HolderYouAndMe hy = (HolderYouAndMe) viewHolder;
+                configureViewHolderYou(hy, position);
                 break;
             default:
-                HolderMe vh = (HolderMe) viewHolder;
-                configureViewHolder3(vh, position);
+                HolderYouAndMe hm = (HolderYouAndMe) viewHolder;
+                configureViewHolderMe(hm, position);
                 break;
         }
     }
 
-    private void configureViewHolder3(HolderMe vh1, int position) {
+    private void configureViewHolderMe(HolderYouAndMe vh1, int position) {
         vh1.getTime().setText(items.get(position).getTime());
         vh1.getChatText().setText(items.get(position).getText());
     }
 
-    private void configureViewHolder2(HolderYou vh1, int position) {
+    private void configureViewHolderYou(HolderYouAndMe vh1, int position) {
         vh1.getTime().setText(items.get(position).getTime());
         vh1.getChatText().setText(items.get(position).getText());
     }

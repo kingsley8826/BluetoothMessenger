@@ -12,7 +12,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.fu.bluetoothmessager.model.BDeviceSocket;
-import com.fu.bluetoothmessager.model.Constants;
+import com.fu.bluetoothmessager.util.Constants;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -293,7 +293,8 @@ public class BluetoothFinderService {
         mHandler.sendMessage(msg);
 
         Constants.CURRENT_STATE = Constants.STATE_NONE;
-
+        if (pDialog != null && pDialog.isShowing())
+            pDialog.dismiss();
         BluetoothFinderService.this.start();
     }
 

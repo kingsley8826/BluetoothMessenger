@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fu.bluetoothmessager.model;
+package com.fu.bluetoothmessager.util;
 
 import com.fu.bluetoothmessager.service.BluetoothChatService;
 
@@ -22,6 +22,14 @@ import com.fu.bluetoothmessager.service.BluetoothChatService;
  * Defines several constants used between {@link BluetoothChatService} and the UI.
  */
 public class Constants {
+
+    // This variable to handle this fragment auto load by viewpager or not
+    public static boolean AUTO_LOAD_DEVICE = true;
+
+    public static final int TYPE_YOU = 0;
+    public static final int TYPE_ME = 1;
+
+    public static final int REQUEST_ENABLE_BLUETOOTH = 1;
 
     // Message types sent from the BluetoothChatService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;
@@ -32,7 +40,7 @@ public class Constants {
     public static final int START_CHAT = 6;
 
     // Key names received from the BluetoothChatService Handler
-    public static final String DEVICE_NAME = "device_name";
+    public static final String DEVICE_KEY = "device_key";
     public static final String TOAST = "toast";
     public static final String BLUETOOTH_SOCKET = "bluetooth_socket";
 

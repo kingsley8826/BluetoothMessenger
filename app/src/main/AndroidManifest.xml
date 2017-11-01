@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChatActivity"
+            android:name=".view.ChatActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".BaseActivity"></activity>
     </application>
