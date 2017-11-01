@@ -1,7 +1,5 @@
 package com.fu.bluetoothmessager.model;
 
-import com.fu.bluetoothmessager.util.Type;
-
 import io.realm.RealmObject;
 
 

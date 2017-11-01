@@ -7,10 +7,6 @@ import android.widget.TextView;
 import com.fu.bluetoothmessager.R;
 
 
-/**
- * Created by Tuan-FPT on 31/10/2017.
- */
-
 public class HolderYouAndMe extends RecyclerView.ViewHolder {
 
     private TextView time, chatText;

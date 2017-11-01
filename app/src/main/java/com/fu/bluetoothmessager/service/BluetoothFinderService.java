@@ -17,9 +17,6 @@ import com.fu.bluetoothmessager.util.Constants;
 import java.io.IOException;
 import java.util.UUID;
 
-/**
- * Created by Tuan-FPT on 30/10/2017.
- */
 
 public class BluetoothFinderService {
 

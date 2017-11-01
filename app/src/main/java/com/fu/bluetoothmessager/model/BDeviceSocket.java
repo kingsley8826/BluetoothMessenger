@@ -5,9 +5,6 @@ import android.bluetooth.BluetoothSocket;
 
 import java.io.Serializable;
 
-/**
- * Created by Tuan-FPT on 30/10/2017.
- */
 
 public class BDeviceSocket implements Serializable {
 
